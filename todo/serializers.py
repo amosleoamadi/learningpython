@@ -5,3 +5,10 @@ class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddTodo
         fields = '__all__'
+
+    def validate(self, data):
+        if not data.get("title"):
+            raise serializers.ValidationError("Title is required")
+        if not data.get("description"):
+            raise serializers.ValidationError("Description is required")
+        return data
