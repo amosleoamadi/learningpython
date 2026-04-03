@@ -5,6 +5,7 @@ class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddTodo
         fields = '__all__'
+        read_only_fields = ['id', 'created_at', 'updated_at']
 
     def validate(self, data):
         if not data.get("title"):

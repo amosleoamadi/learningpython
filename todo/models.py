@@ -1,11 +1,18 @@
+import uuid
 from django.db import models
 
-# Create your models here.
 class AddTodo(models.Model):
-    title = models.CharField(max_length=150)
-    description = models.CharField(max_length=200)
-    iscomplete = models.BooleanField(default=False)
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        unique=True
+    )
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return self.title
