@@ -73,7 +73,6 @@ def create_todo(request):
 )
 @api_view(['GET'])
 def get_todo_detail(request, pk):
-    """Get a single todo by ID"""
     try:
         todo = get_object_or_404(AddTodo, pk=pk)
         serializer = TodoSerializer(todo)
